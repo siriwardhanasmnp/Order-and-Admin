@@ -1,0 +1,19 @@
+
+*  {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  text-align: left;
+  justify-content: center;
+  display: flex; 
+  background-color: #ffffff;
+  background-image: url("/src/Components/Images/vege.jpg");
+  background-repeat: no-repeat,repeat;
+  height: 750px;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
