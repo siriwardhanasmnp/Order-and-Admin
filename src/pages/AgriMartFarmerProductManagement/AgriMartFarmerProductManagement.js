@@ -1,11 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AgriMartFarmerNavBar from '../../components/AgriMartFarmerNavBar/AgriMartFarmerNavBar';
 // import './AgriMartFarmerProductManagement.css';
 import AgriMartFooter from '../../components/AgriMartFooter/AgriMartFooter';
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function AgriMartFarmerProductManagement() {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        // Update the document title using the browser API
+        apiCalls();
+    });
+
+    let apiCalls = (e) => {
+        try {
+
+            axios({
+                method: 'get',
+                url: 'http://localhost:8080/getproducts'
+            })
+                .then(res => {
+                    console.log('result', res);
+                    console.log('data', res.data);
+                    setData(res.data);
+                    console.log('data-array', data)
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+        catch (err) {
+            console.log(err);
+        }
+    };
+
     return (<div>
         <div>
             <AgriMartFarmerNavBar />
@@ -26,31 +57,28 @@ function AgriMartFarmerProductManagement() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Product Name</th>
-                        <th>Price</th>
+                        <th>Product ID</th>
+                        <th>Product Title</th>
+                        <th>Category</th>
+                        <th>Description</th>
                         <th>Quantity</th>
+                        <th>Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Carrot</td>
-                        <td>200 LKR</td>
-                        <td>1 Kg</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mango</td>
-                        <td>400 LKR</td>
-                        <td>1 Kg</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Apple</td>
-                        <td>150 LKR</td>
-                        <td>1 Kg</td>
-                    </tr>
+                    {
+                        data.map((item) => (
+                            <tr key={item.id}>
+                                <td>{item.productId}</td>
+                                <td>{item.productTitle}</td>
+                                <td>{item.category}</td>
+                                <td>{item.description}</td>
+                                <td>{item.quantity}</td>
+                                <td>{item.price}</td>
+
+                            </tr>
+                        ))
+                    }
                 </tbody>
             </Table>
 

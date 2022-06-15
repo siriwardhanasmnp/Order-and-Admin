@@ -7,6 +7,7 @@ import FarmerPortalRoutes from './FarmerPortalRoutes';
 
 ReactDOM.render(
   <React.StrictMode>
+    
     <App />
     <FarmerPortalRoutes/>
   </React.StrictMode>,

@@ -1,8 +1,9 @@
 import React from 'react';
 import AgriMartFarmerNavBar from '../../components/AgriMartFarmerNavBar/AgriMartFarmerNavBar';
 import AgriMartFooter from '../../components/AgriMartFooter/AgriMartFooter';
-import { Form, Row, Col, Button, Alert} from "react-bootstrap";
+import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { useState } from "react";
+import axios from 'axios';
 
 function AgriMartAddNewProduct() {
     const [productTitle, setProductTitle] = useState("");
@@ -10,42 +11,37 @@ function AgriMartAddNewProduct() {
     const [description, setdescription] = useState("");
     const [quantity, setquantity] = useState("");
     const [price, setprice] = useState("");
-    const [message, setMessage] = useState("");
+    // const [message, setMessage] = useState("");
 
 
-    let handleSubmit = async (e) => {
+
+    let handleSubmit = (e) => {
         e.preventDefault();
+
         try {
-            console.log('product', productTitle, category, description, quantity, price);
-            // console.log('setValues',setProductTitle,setcategory,setdescription,setquantity,setprice);
-            let res = await fetch("http://localhost:8080/products", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            const product = {
+                productTitle: productTitle,
+                category: category,
+                description: description,
+                quantity: quantity,
+                price: price
+            };
 
-                body: JSON.stringify({
 
-                    productTitle: productTitle,
-                    category: category,
-                    description: description,
-                    quantity: quantity,
-                    price: price
-                }),
-            });
-            let resJson = await res.json();
-            if (res.status === 200) {
-                setProductTitle("");
-                setcategory("");
-                setdescription("");
-                setquantity("");
-                setprice("");
-                setMessage("Product created successfully");
-
-            } else {
-                setMessage("Some error occured");
-            }
-        } catch (err) {
+            axios({
+                method: 'post',
+                url: 'http://localhost:8080/products',
+                data: product
+            })
+                .then(res => {
+                    console.log('result', res);
+                    console.log('data', res.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+        catch (err) {
             console.log(err);
         }
     };
@@ -67,7 +63,7 @@ function AgriMartAddNewProduct() {
                                 Product Name
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="text" value={productTitle} onChange={(e) => setProductTitle(e.target.value)} placeholder=" Enter Product Name" />
+                                <Form.Control required type="text" value={productTitle} onChange={(e) => setProductTitle(e.target.value)} placeholder=" Enter Product Name" />
                             </Col>
                         </Form.Group>
 
@@ -76,7 +72,7 @@ function AgriMartAddNewProduct() {
                                 Category
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="text" value={category} onChange={(e) => setcategory(e.target.value)} placeholder="Enter Product Category" />
+                                <Form.Control required type="text" value={category} onChange={(e) => setcategory(e.target.value)} placeholder="Enter Product Category" />
                             </Col>
                         </Form.Group>
 
@@ -85,7 +81,7 @@ function AgriMartAddNewProduct() {
                                 Product Description
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control as="textarea" value={description} onChange={(e) => setdescription(e.target.value)} placeholder="Enter Product Description" />
+                                <Form.Control required as="textarea" value={description} onChange={(e) => setdescription(e.target.value)} placeholder="Enter Product Description" />
                             </Col>
                         </Form.Group>
 
@@ -94,16 +90,16 @@ function AgriMartAddNewProduct() {
                                 Quantity
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="text" value={quantity} onChange={(e) => setquantity(e.target.value)} placeholder="Enter Quantity" />
+                                <Form.Control required type="text" value={quantity} onChange={(e) => setquantity(e.target.value)} placeholder="Enter Quantity" />
                             </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
                             <Form.Label column sm={2}>
-                                Price
+                                Price(LKR)
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="text" value={price} onChange={(e) => setprice(e.target.value)} placeholder="Enter Price" />
+                                <Form.Control required type="text" value={price} onChange={(e) => setprice(e.target.value)} placeholder="Enter Price" />
                             </Col>
                         </Form.Group>
 
@@ -122,13 +118,13 @@ function AgriMartAddNewProduct() {
                                 <Button type="submit">Submit</Button>
                             </Col>
                         </Form.Group>
-                        <Alert variant="warning">
+                        {/* <Alert variant="warning">
                             <Alert.Heading>
                                 {message}
                             </Alert.Heading>
                         
 
-                        </Alert>
+                        </Alert> */}
 
                         {/* <div className="message">{message ? <p>{message}</p> : null}</div> */}
                     </Form>
