@@ -1,0 +1,10 @@
+.nav-styles{
+    cursor: pointer;
+    color: cadetblue;
+    background: #808080;
+   
+}
+.badge-style{
+    cursor: pointer;
+    font-size: 20px;
+}
