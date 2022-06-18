@@ -20,7 +20,7 @@ function AgriMartFarmerProductManagement() {
 
             axios({
                 method: 'get',
-                url: 'http://localhost:8080/getproducts'
+                url: 'http://localhost:8080/products'
             })
                 .then(res => {
                     console.log('result', res);
@@ -63,6 +63,7 @@ function AgriMartFarmerProductManagement() {
                         <th>Description</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>

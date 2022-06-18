@@ -23,7 +23,7 @@ function AgriMartFarmerOrderManagement() {
 
             axios({
                 method: 'get',
-                url: 'http://localhost:8080/getproducts'
+                url: 'http://localhost:8080/getorders'
             })
                 .then(res => {
                     console.log('result', res);
@@ -48,10 +48,10 @@ function AgriMartFarmerOrderManagement() {
             </div>
             <div>
 
-                <h2 class="txt-header">Orders Management</h2>
+                <h2 class="txt-header">Order Management</h2>
             </div>
             <div>
-                const App = () =&gt; (
+                {/* const App = () =&gt; ( */}
                 <div className="card-container">
                     <Tabs type="card">
                         <TabPane tab="Pending Orders" key="1">
@@ -60,28 +60,61 @@ function AgriMartFarmerOrderManagement() {
                                 <Table striped bordered hover>
                                     <thead>
                                         <tr>
-                                            <th>Orders ID</th>
+                                            <th>Order ID</th>
                                             <th>Order Date</th>
-                                            <th>Product Name</th>
+                                            <th>Product Name</th> 
                                             <th>Quantity</th>
-                                            <th>Price</th>
+                                            <th>Total Amount</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {
-                                            data.map((item) => (
-                                                <tr key={item.id}>
-                                                    <td>{item.orderId}</td>
-                                                    <td>{item.orderDate}</td>
-                                                    <td>{item.orderName}</td>
-                                                    <td>{item.quantity}</td>
-                                                    <td>{item.price}</td>
-                                                    {/* <td>{item.price}</td> */}
-
-                                                </tr>
-                                            ))
-                                        }
+                                            <td>00001</td>
+                                            <td>15.06.2022</td>
+                                            <td>Carrot 10Kg</td>
+                                            <td>1</td>
+                                            <td>Rs.2560</td>
+                                            <Button type="submit">RTS</Button>
+                                    </tbody>
+                                    <tbody>
+                                            <td>00002</td>
+                                            <td>15.06.2022</td>
+                                            <td>Beans 10Kg</td>
+                                            <td>1</td>
+                                            <td>Rs.3000</td>
+                                            <Button type="submit">RTS</Button>
+                                    </tbody>
+                                    <tbody>
+                                            <td>00003</td>
+                                            <td>15.06.2022</td>
+                                            <td>Beans 10Kg</td>
+                                            <td>1</td>
+                                            <td>Rs.1900</td>
+                                            <Button type="submit">RTS</Button>
+                                    </tbody>
+                                    <tbody>
+                                            <td>00004</td>
+                                            <td>16.06.2022</td>
+                                            <td>Mango 40Kg</td>
+                                            <td>1</td>
+                                            <td>Rs.3600</td>
+                                            <Button type="submit">RTS</Button>
+                                    </tbody>
+                                    <tbody>
+                                            <td>00005</td>
+                                            <td>16.06.2022</td>
+                                            <td>Tomato 10Kg</td>
+                                            <td>1</td>
+                                            <td>Rs.2000</td>
+                                            <Button type="submit">RTS</Button>
+                                    </tbody>
+                                    <tbody>
+                                            <td>00006</td>
+                                            <td>16.06.2022</td>
+                                            <td>Potatoes 15Kg</td>
+                                            <td>1</td>
+                                            <td>Rs.3500</td>
+                                            <Button type="submit">RTS</Button>
                                     </tbody>
                                 </Table>
 
@@ -97,8 +130,8 @@ function AgriMartFarmerOrderManagement() {
                                             <th>Order Date</th>
                                             <th>Product Name</th>
                                             <th>Quantity</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
+                                            <th>Total Amount</th>
+                                            <th>Delivery Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -131,8 +164,8 @@ function AgriMartFarmerOrderManagement() {
                                             <th>Order Date</th>
                                             <th>Product Name</th>
                                             <th>Quantity</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
+                                            <th>Total Amount</th>
+                                            <th>Delivery Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -144,6 +177,7 @@ function AgriMartFarmerOrderManagement() {
                                                     <td>{item.orderName}</td>
                                                     <td>{item.quantity}</td>
                                                     <td>{item.price}</td>
+
                                                     {/* <td>{item.price}</td> */}
 
                                                 </tr>
@@ -165,8 +199,9 @@ function AgriMartFarmerOrderManagement() {
                                             <th>Order Date</th>
                                             <th>Product Name</th>
                                             <th>Quantity</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
+                                            <th>Total Amoun</th>
+                                            <th>Delivery Status</th>
+                        
                                         </tr>
                                     </thead>
                                     <tbody>
