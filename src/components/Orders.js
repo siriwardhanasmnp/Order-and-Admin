@@ -36,7 +36,7 @@ useEffect(()=>{
                         <td>Customer Id</td>
                         <td>Address</td>
                         <td>Delivery Agent</td>
-                        <td>Confirm Order</td>
+                        <td style={{textAlign:"center;"}}>Confirm Order</td>
 
                         
                        
@@ -57,7 +57,7 @@ useEffect(()=>{
  
   <div class="dropdown">
 
-  <select class="form-select form-select-sm mb-1" aria-label=".form-select-lg example">
+  <select  class="form-select form-select-sm mb-1" aria-label=".form-select-lg example">
   <option selected><strong> Delivery Agent</strong> </option>
   <option value="1">Agent A</option>
   <option value="2">Agent B</option>
@@ -67,18 +67,9 @@ useEffect(()=>{
  
 </div>
 </td>
-
-
-
 <td><button onClick={()=>navigateToConfirmed(post)}> Send to RTS </button></td>
  </tr>
-
- 
-                     
- 
-
-                   
-                    ))
+))
 
           }
           </tbody>
