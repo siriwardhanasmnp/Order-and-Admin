@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import AgriMartFarmerNavBar from '../../components/AgriMartFarmerNavBar/AgriMartFarmerNavBar';
-// import './AgriMartFarmerProductManagement.css';
+import './AgriMartFarmerProductManagement.css';
 import AgriMartFooter from '../../components/AgriMartFooter/AgriMartFooter';
-import { Button, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+// import { Button } from 'react-bootstrap';
+import { Button } from 'antd';
 
 function AgriMartFarmerProductManagement() {
 
@@ -46,7 +48,7 @@ function AgriMartFarmerProductManagement() {
         <h2 class="txt-header">Product Management</h2>
         <div class="button-style">
             <Link to="/addproduct">
-                <Button variant="success" size="sm">
+                <Button type="primary" colour="green">
                     Add New Product
                 </Button>
             </Link>
@@ -76,6 +78,8 @@ function AgriMartFarmerProductManagement() {
                                 <td>{item.description}</td>
                                 <td>{item.quantity}</td>
                                 <td>{item.price}</td>
+                                <Button type="text">Edit</Button>
+                                <Button type="primary" danger>Delete</Button>
 
                             </tr>
                         ))
