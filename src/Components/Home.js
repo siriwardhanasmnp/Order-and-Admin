@@ -16,8 +16,11 @@ const Home = () => {
 
               <Link to="/sign"><button>
               Sign Up 
-         </button>
-         </Link>
+              </button>  </Link>
+              <Link to="/sellreg"> <button>
+              Selling
+              </button>  </Link>
+         
          </form>
          </div>
          

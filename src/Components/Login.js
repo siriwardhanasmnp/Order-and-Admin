@@ -7,11 +7,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   return (
-     
-   
-    <div className="login">
-      <form className="login_form">
-            <h1> Welcome to Agri Mart !</h1>
+
+    
+      <div>
+            <h1 style={{textAlign:"center", marginTop:"4rem"}}> Welcome to Agri Mart !</h1>
+            <div className="login_form">
      <h2><b>LOG IN</b></h2>
      <p><b>Shopped with us before ? Log in with your details </b></p><br/>
      <label for="email" >User Name </label>
@@ -33,17 +33,22 @@ const Login = () => {
            value={password} 
            onChange={(e) => setPassword(e.target.value)}id="pwd1"
            />
-           <p >Forgot password ?</p>
-     <button type = "Submit" id= "submutt" className="submit_btn">
+           
+            <div>
+           <p style={{textAlign:"right", margineleft:"6rem"}}>Forgot password ?</p>
+     <button type = "Submit" id= "submutt" className="submit_btn" >
            Log in
            </button>
-      
-     <p><br/>Don't have an Account ? <b>
-      <Link to="/signup"> <u> Sign Up</u>  </Link> </b> </p>     
-             
-     </form>
-       
+           </div>
+           <br/>
+     <p style={{textAlign:"center"}}>Don't have an Account ? <b>
+      <Link to="/signup"> <u> Sign Up</u>  </Link> </b> </p>  
       </div>
+        
+       </div>
+      
+     
+     
   );
 };
 

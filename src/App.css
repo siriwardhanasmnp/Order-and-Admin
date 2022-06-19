@@ -9,8 +9,8 @@ body {
   text-align: left;
   justify-content: center;
   display: flex; 
-  background-color: #ffffff;
-  background-image: url("/src/Components/Images/vege.jpg");
+  /*background-color: #d1bfbfdc;*/
+  background-image: url("/src/Components/Images/fruits.jpeg");
   background-repeat: no-repeat,repeat;
   height: 750px;
   background-position: center;

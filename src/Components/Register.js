@@ -50,70 +50,36 @@ function handleFormSubmit(e) {
   
   }
   return (   
-    <> 
+    
         <div>
           {" "}
           {login ? (
             <form onSubmit={handleFormSubmit}>
-               <h1>Create Your Agri Mart Account !</h1>
-              <div className="left-side">
+              <br/>
+               <h1 style={{textAlign:"center", marginTop:"4rem"}}>Create Your Agri Mart Account !</h1>
+               <div className="reg1">
+
               <div className="form-group">
                 <label><br/>Full Name</label>
                 <input
-                  type="text"
+                  type="phone"
+                  
                   className="form-control"
                   placeholder="Enter Full Name"
                   name="name"
                   onChange={(event) => setName(event.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  type="email"
-                  className={`form-control ${errors.email && "invalid"}`}
-                  placeholder="Enter email"
-                  onChange={(event) => setEmail(event.target.value)}
-                  {...register("email", { required: "Email is Required" ,
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Invalid email address",
-                  }})}
+                  {...register("name", { required: "name is Required",
+                 
+                })}
                   onKeyUp={() => {
-                    trigger("email");
-                  }}
+                    trigger("name"); }}
                 />
-                {errors.email && (
-                  <small className="text-danger">{errors.email.message}</small>
+                {errors.name && (
+                  <small className="text-danger">{errors.name.message}</small>
                 )}
-                
               </div>
 
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Enter password"
-                  onChange={(event) => setPassword(event.target.value)}
-                  
-                />
-              </div>
-
-                <div className="form-group">
-                <label>Confirm Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Enter password again"
-                  onChange={(event) => setconfirmpassword(event.target.value)
-                  }
-                />
-              </div>
-              </div>
-              <div className="right-side">
-              <div className="form-group">
+               <div className="form-group">
                 <label>Phone Number</label>
                 <input
                   type="Phone"
@@ -132,11 +98,10 @@ function handleFormSubmit(e) {
                 />
                 {errors.phone && (
                   <small className="text-danger">{errors.phone.message}</small>
-                )}
+                )}</div>
           
-              </div>
-
-              <div className="form-group">
+          
+          <div className="form-group">
                 <label>Gender</label>
                 <Form.Control
                   as="select"
@@ -147,14 +112,70 @@ function handleFormSubmit(e) {
                   <option>Female</option>
                 </Form.Control>
               </div>
+
+              <div className="form-group">
+                <br/>
+                <label>Email</label>
+                <input
+                  type="email"
+                  className={`form-control ${errors.email && "invalid"}`}
+                  placeholder="Enter email"
+                  onChange={(event) => setEmail(event.target.value)}
+                  {...register("email", { required: "Email is Required" ,
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address",
+                  }})}
+                  onKeyUp={() => {
+                    trigger("email");
+                  }}
+                />
+                {errors.email && (
+                  <small className="text-danger">{errors.email.message}</small>
+                )}
+               
               </div>
-              <button type="submit" className="btn_btn">
-                    Sign Up
+            
+              </div>
+              <div className="reg">
+              <div className="form-group">
+            
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Enter password"
+                  onChange={(event) => setPassword(event.target.value)}
+                  {...register("passsword", { required: "name is Required" })}
+                  onKeyUp={() => {
+                    trigger("password"); }}
+                />
+                 {errors.email && (
+                  <small className="text-danger">{errors.password.message}</small>
+                )}
+              </div>
+
+                <div className="form-group">
+                <label>Confirm Password</label>
+                <input
+                  type="ConfirmPassword"
+                  className="form-control"
+                  placeholder="Enter password again"
+                  onChange={(event) => setconfirmpassword(event.target.value)
+                  }
+                  {...register("password", { required: "password is Required",})}
+                />
+              </div>
+
+            <div>
+               <button type="submit" className="btn_btn">
+                    SIGN UP
               </button>
-               <br/>
+              
+               <br/>  <br/>
                <b> Already have an Account ?  <Link to="/signin"> <u>LOG IN</u> </Link>  </b>
               <p onClick={handleClick} className="forgot-password text-right">
-                
+            
                 
               </p>
               {flag && (
@@ -162,13 +183,16 @@ function handleFormSubmit(e) {
                  <h3><b>All information are required !</b> </h3>
                 </Alert>
               )}
+              </div>
+              </div>
             </form>
           ) : (
             <Login />
           )}
-        </div>
+          </div>
+          
+  
     
-    </>
   );
 }
 export default Register;

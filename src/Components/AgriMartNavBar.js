@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Badge, Image } from 'react-bootstrap';
 import './AgriMartNavBar.css';
-//import logo from '.src/resources/images/logo.jpeg';
+import logo from '.src/resources/images/logo.jpeg';
 function AgriMartNavBar() {
     return (
         <Navbar class="nav-styles" collapseOnSelect fixed="top" expand="sm" bg="dark" variant="dark">
