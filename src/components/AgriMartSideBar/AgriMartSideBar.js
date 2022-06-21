@@ -24,11 +24,6 @@ const routes = [
     icon: <MdReviews />,
   },
   {
-    path: "/finance",
-    name: "Finance",
-    icon: <AiTwotoneBank/>,
-  },
-  {
     path: "/accountsettings",
     name: "Account Setting",
     icon: <BiCog />,

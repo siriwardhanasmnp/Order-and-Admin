@@ -6,6 +6,8 @@ import AgriMartAccountSettings from './pages/AgriMartAccountSettings/AgriMartAcc
 import AgriMartFinance from './pages/AgriMartFinance/AgriMartFinance';
 import AgriMartAddNewProduct from './pages/AgriMartAddNewProduct/AgriMartAddNewProduct';
 import AgriMartFarmerPortal from './pages/AgriMartFarmerPortal/AgriMartFarmerPortal';
+import AgriMartEditProduct from './pages/AgriMartEditProduct/AgriMartEditProduct';
+
 import './App.css';
 import AgriMartSideBar from './components/AgriMartSideBar/AgriMartSideBar';
 
@@ -28,6 +30,7 @@ function FarmerPortalRoutes() {
                     <Route path="/finance" element={<AgriMartFinance />} />
                     <Route path="/accountsettings" element={<AgriMartAccountSettings />} />
                     <Route path="/addproduct" element={<AgriMartAddNewProduct />} />
+                    <Route path="/editproduct" element={<AgriMartEditProduct />} />
 
                 </Routes>
             </AgriMartSideBar>

@@ -11,7 +11,7 @@ function AgriMartFarmerPortal() {
             </div>
            
             <div>
-                <h2  class="txt-header" >Farmer Portal</h2>
+                <h2  class="txt-header" >Welcome to Farmer Portal</h2>
             </div>
             <div> <AgriMartFooter/></div>
 

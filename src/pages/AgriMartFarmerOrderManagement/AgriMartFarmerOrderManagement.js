@@ -15,15 +15,15 @@ function AgriMartFarmerOrderManagement() {
 
     useEffect(() => {
         // Update the document title using the browser API
-        apiCalls();
-    });
+        getOrders();
+    }, []);
 
-    let apiCalls = (e) => {
+    let getOrders = () => {
         try {
 
             axios({
                 method: 'get',
-                url: 'http://localhost:8080/getorders'
+                url: 'http://localhost:8080/orders'
             })
                 .then(res => {
                     console.log('result', res);
@@ -199,7 +199,7 @@ function AgriMartFarmerOrderManagement() {
                                             <th>Order Date</th>
                                             <th>Product Name</th>
                                             <th>Quantity</th>
-                                            <th>Total Amoun</th>
+                                            <th>Total Amount</th>
                                             <th>Delivery Status</th>
                         
                                         </tr>
