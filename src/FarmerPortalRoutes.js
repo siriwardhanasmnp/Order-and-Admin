@@ -30,7 +30,7 @@ function FarmerPortalRoutes() {
                     <Route path="/finance" element={<AgriMartFinance />} />
                     <Route path="/accountsettings" element={<AgriMartAccountSettings />} />
                     <Route path="/addproduct" element={<AgriMartAddNewProduct />} />
-                    <Route path="/editproduct" element={<AgriMartEditProduct />} />
+                    <Route path="/editproduct/:id/" element={<AgriMartEditProduct />} />
 
                 </Routes>
             </AgriMartSideBar>

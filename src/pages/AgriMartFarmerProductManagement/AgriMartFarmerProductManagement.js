@@ -3,15 +3,16 @@ import AgriMartFarmerNavBar from "../../components/AgriMartFarmerNavBar/AgriMart
 import "./AgriMartFarmerProductManagement.css";
 import AgriMartFooter from "../../components/AgriMartFooter/AgriMartFooter";
 import { Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import 'antd/dist/antd.css';
 // import { Button } from 'react-bootstrap';
 import { Button, notification } from "antd";
 
 function AgriMartFarmerProductManagement(props) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [productId,setProductId] = useState();
+  const [productId, setProductId] = useState();
   useEffect(() => {
     // Update the document title using the browser API
     getAllProducts();
@@ -37,29 +38,31 @@ function AgriMartFarmerProductManagement(props) {
     }
   };
 
-  let onUpdate = (id) => {
-   props.history.push({
-       pathname: '/editproduct/',id
-   });
+  const navigate = useNavigate();
+  let onUpdate = (item) => {
+    const { productId: id } = item;
 
-   console.log("ID----", id);
-   
+    navigate("/editproduct/" + id + "/", { state: item });
+
+    console.log("ID----", id);
+
+    return;
+
     axios({
-      method: "update",
+      method: "put",
       url: `http://localhost:8080/products/${id}`,
     })
       .then((res) => {
         notification.success({
-            message: "Product Updated Successfully",
-          });
-          setIsLoading(false);
-        
+          message: "Product Updated Successfully",
+        });
+        setIsLoading(false);
       })
       .catch((error) => {
         notification.error({
-            message: "Something Went Wrong",
-          });
-          setIsLoading(false);
+          message: "Something Went Wrong",
+        });
+        setIsLoading(false);
       });
   };
 
@@ -70,16 +73,15 @@ function AgriMartFarmerProductManagement(props) {
     })
       .then((res) => {
         notification.success({
-            message: "Product Deleted Successfully",
-          });
-          setIsLoading(false);
-        
+          message: "Product Deleted Successfully",
+        });
+        setIsLoading(false);
       })
       .catch((error) => {
         notification.error({
-            message: "Something Went Wrong",
-          });
-          setIsLoading(false);
+          message: "Something Went Wrong",
+        });
+        setIsLoading(false);
       });
   };
 
@@ -120,12 +122,19 @@ function AgriMartFarmerProductManagement(props) {
                 <td>{item.description}</td>
                 <td>{item.quantity}</td>
                 <td>{item.price}</td>
-                <Link to="/editproduct/">
-                  <Button onClick={() => onUpdate(item.productId)} type="primary" colour="green">
-                    Edit
-                  </Button>
-               </Link>
-                <Button onClick={() => onDelete(item.productId)} loading={isLoading}  type="primary" danger>
+                <Button
+                  onClick={() => onUpdate(item)}
+                  type="primary"
+                  colour="green"
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={() => onDelete(item.productId)}
+                  loading={isLoading}
+                  type="primary"
+                  danger
+                >
                   Delete
                 </Button>
               </tr>

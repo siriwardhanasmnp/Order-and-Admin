@@ -4,7 +4,7 @@ import AgriMartFooter from "../../components/AgriMartFooter/AgriMartFooter";
 // import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   Button,
   Form,
@@ -40,6 +40,15 @@ function AgriMartEditProduct(props) {
 
   const [form] = Form.useForm();
 
+  const { state } = useLocation();
+
+
+  useEffect(() => {
+    if(state){
+      form.setFieldsValue(state);
+    }
+  }, [state]);
+  
   let getOneProduct = (productId) => {
     axios({
       method: "get",
@@ -50,28 +59,26 @@ function AgriMartEditProduct(props) {
           console.log('Edit result',res);
           console.log('data----',res.data);
         notification.success({
-          message: "Product Added Successfully",
+          message: "Product Updated Successfully",
         });
         form.resetFields()
         setIsLoading(false);
       })
 
       .catch((error) => {
-        notification.error({
-          message: "Something Went Wrong",
-        });
-        setIsLoading(false);
       });
   };
 
-  let onUpdate = (id) => {
-    axios({
-      method: "update",
-      url: `http://localhost:8080/products/${id}`,
-    })
+  const { id } = useParams();
+  const navigate  = useNavigate();
+  let onUpdate = (body) => {
+    axios.put(`http://localhost:8080/products/${id}`, body)
       .then((res) => {
-        
+        navigate('/management');
         console.log("updateTODATa-----", res.data);
+        notification.success({
+          message: "Product Updated Successfully",
+        });
         
       })
       .catch((error) => {
@@ -118,6 +125,7 @@ function AgriMartEditProduct(props) {
               <Select className="w-100">
                 <option value={"vegitable"}>Vegetables</option>
                 <option value={"fruits"}>Fruits</option>
+                <option value={"Spices"}>Spices</option>
               </Select>
             </FormItem>
             <FormItem
