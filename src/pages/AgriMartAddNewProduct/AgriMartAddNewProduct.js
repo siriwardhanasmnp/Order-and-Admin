@@ -41,7 +41,7 @@ function AgriMartAddNewProduct() {
         notification.success({
           message: "Product Added Successfully",
         });
-        form.resetFields()
+        form.resetFields();
         setIsLoading(false);
       })
 
@@ -53,8 +53,9 @@ function AgriMartAddNewProduct() {
       });
   };
 
-  const requiredValidation = [{ required: true, message: "This Field is Required" }];
-  
+  const requiredValidation = [
+    { required: true, message: "This Field is Required" },
+  ];
 
   return (
     <div>
@@ -65,8 +66,8 @@ function AgriMartAddNewProduct() {
       <div>
         <h2 class="txt-header">Add New Product</h2>
         <div class="form-style">
-          <Form 
-          form={form}
+          <Form
+            form={form}
             onFinish={handleSubmit}
             layout="vertical"
             labelCol={{ flex: "110px" }}
@@ -77,11 +78,10 @@ function AgriMartAddNewProduct() {
             <FormItem
               label="Product Title"
               name="productTitle"
-
               required
               rules={requiredValidation}
             >
-              <Input maxLength={100}/>
+              <Input maxLength={100} />
             </FormItem>
             <FormItem
               label="Category"

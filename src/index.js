@@ -5,6 +5,7 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FarmerPortalRoutes from './FarmerPortalRoutes';
 import 'antd/dist/antd.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 ReactDOM.render(
   <React.StrictMode>

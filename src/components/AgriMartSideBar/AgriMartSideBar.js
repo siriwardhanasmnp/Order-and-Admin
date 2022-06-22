@@ -93,7 +93,7 @@ const AgriMartSideBar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  Farmer Portal
+                  <div style={{color:"white"}}>Farmer Portal</div>
                 </motion.h1>
               )}
             </AnimatePresence>

@@ -13,8 +13,8 @@ function AgriMartFarmerProductManagement(props) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [productId, setProductId] = useState();
+  
   useEffect(() => {
-    // Update the document title using the browser API
     getAllProducts();
   }, []);
 
@@ -45,25 +45,7 @@ function AgriMartFarmerProductManagement(props) {
     navigate("/editproduct/" + id + "/", { state: item });
 
     console.log("ID----", id);
-
-    return;
-
-    axios({
-      method: "put",
-      url: `http://localhost:8080/products/${id}`,
-    })
-      .then((res) => {
-        notification.success({
-          message: "Product Updated Successfully",
-        });
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        notification.error({
-          message: "Something Went Wrong",
-        });
-        setIsLoading(false);
-      });
+    
   };
 
   let onDelete = (id) => {
@@ -127,7 +109,7 @@ function AgriMartFarmerProductManagement(props) {
                   type="primary"
                   colour="green"
                 >
-                  Edit
+                  <i class="bi bi-pencil" style={{color:"black"}}></i>
                 </Button>
                 <Button
                   onClick={() => onDelete(item.productId)}
@@ -135,7 +117,7 @@ function AgriMartFarmerProductManagement(props) {
                   type="primary"
                   danger
                 >
-                  Delete
+                  Delete 
                 </Button>
               </tr>
             ))}

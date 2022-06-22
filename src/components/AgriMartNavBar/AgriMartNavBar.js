@@ -12,7 +12,7 @@ function AgriMartNavBar() {
                  Agri Mart   </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
+                    <Nav className="me-auto" style={{float:"right"}}>
                      <Nav.Link href='/portal'>Farmer Portal</Nav.Link>
                         <Nav.Link href="/aboutus">About Us</Nav.Link>
                     </Nav>
