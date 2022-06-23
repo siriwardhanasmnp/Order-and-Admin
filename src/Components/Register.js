@@ -15,6 +15,7 @@ function Register() {
 
   const [flag, setFlag] = useState(false);
   const [login, setLogin] = useState(true);
+  const [password_mismatch_error,setPassword_mismatch_error] =useState(false);
   const {
     register,
     handleSubmit,
@@ -49,6 +50,9 @@ function handleFormSubmit(e) {
     setLogin(!login);
   
   }
+
+
+  const password_mismatch_error_msg=<div style={{color:"red"}}>Password doesn't match.</div>
   return (   
     
         <div>
@@ -121,14 +125,14 @@ function handleFormSubmit(e) {
                   className={`form-control ${errors.email && "invalid"}`}
                   placeholder="Enter email"
                   onChange={(event) => setEmail(event.target.value)}
-                  {...register("email", { required: "Email is Required" ,
+                  {...register("email", {required: "Email is Required" ,
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                     message: "Invalid email address",
                   }})}
-                  onKeyUp={() => {
-                    trigger("email");
-                  }}
+                  // onKeyUp={() => {
+                  //   trigger("email");
+                  // }}
                 />
                 {errors.email && (
                   <small className="text-danger">{errors.email.message}</small>
@@ -146,7 +150,7 @@ function handleFormSubmit(e) {
                   className="form-control"
                   placeholder="Enter password"
                   onChange={(event) => setPassword(event.target.value)}
-                  {...register("passsword", { required: "name is Required" })}
+                  // {...register("passsword", { required: "passowrdis Required" })}
                   onKeyUp={() => {
                     trigger("password"); }}
                 />
@@ -158,17 +162,27 @@ function handleFormSubmit(e) {
                 <div className="form-group">
                 <label>Confirm Password</label>
                 <input
-                  type="ConfirmPassword"
+                  type="Password"
                   className="form-control"
                   placeholder="Enter password again"
                   onChange={(event) => setconfirmpassword(event.target.value)
                   }
-                  {...register("password", { required: "password is Required",})}
+                  // {...register("ConfirmPassword", { required: "password is Required",})}
                 />
+                {(password_mismatch_error)?password_mismatch_error_msg:<></>}
               </div>
 
             <div>
-               <button type="submit" className="btn_btn">
+               <button type="submit" className="btn_btn" 
+               onClick={(e)=>{
+                console.log(password, ConfirmPassword);
+                if(password != ConfirmPassword){
+                  setPassword_mismatch_error(true);
+                }else{
+                  setPassword_mismatch_error(false);
+                }
+               }}
+               >
                     SIGN UP
               </button>
               
@@ -190,8 +204,6 @@ function handleFormSubmit(e) {
             <Login />
           )}
           </div>
-          
-  
     
   );
 }

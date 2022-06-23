@@ -5,10 +5,33 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [email_error,setEmail_error] =useState(false);
+  const [password_error,setPassword_error] =useState(false);
+  const [email_empty_error,setEmail_empty_error] =useState(false);
+  const [password_empty_error,setPassword_empty_error] =useState(false);
+  function validateEmail(email) 
+  {
+      //var re = /\S+@\S+/;
+      var re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+      return re.test(email);
+  }
+ 
+  function validatepassword(password) 
+  {
+      //var re = /\S+@\S+/;
+      var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+
+
+      return re.test(password);
+  }
+ 
+const email_error_msg=<div style={{color:"red"}}>Invalid email</div>
+const password_error_msg=<div style={{color:"red"}}>Invalid password</div>
+
+const email_empty_error_msg=<div style={{color:"red"}}>Email is required.</div>
+const password_empty_error_msg=<div style={{color:"red"}}>Password is required.</div>
 
   return (
-
-    
       <div>
             <h1 style={{textAlign:"center", marginTop:"4rem"}}> Welcome to Agri Mart !</h1>
             <div className="login_form">
@@ -21,22 +44,45 @@ const Login = () => {
             type="email" 
             placeholder="Enter Your Email Address"
             value={email} 
+           onChange={(e) => {
+            var val=validateEmail(e.target.value);
+            setEmail_error(!val);
+            console.log(val);
+            setEmail(e.target.value)
+      }}    
 
-           onChange={(e) => setEmail(e.target.value)}
-
-            />     
+            />
+      {(email_error)?email_error_msg:<></>} 
+      {(email_empty_error)?email_empty_error_msg:<></>}    
       <label for="password" >Password</label> 
       <i class= "fa fa-lock"></i> 
      <input               
            type="password" 
            placeholder="Enter Your Password"
            value={password} 
-           onChange={(e) => setPassword(e.target.value)}id="pwd1"
+           onChange={(e)=> {
+            var val=validatepassword(e.target.value);
+            setPassword_error(!val);
+            setPassword(e.target.value);
+            console.log(password);
+      }
+}id="pwd1"
            />
-           
+         {(password_error)?password_error_msg:<></>}
+         {(password_empty_error)?password_empty_error_msg:<></>}  
             <div>
            <p style={{textAlign:"right", margineleft:"6rem"}}>Forgot password ?</p>
-     <button type = "Submit" id= "submutt" className="submit_btn" >
+     <button type = "Submit" id= "submutt" className="submit_btn" 
+     onClick={(e)=>{
+            if(password == ''){
+                  console.log('password is empty.')
+                  setPassword_error(false);
+                  setPassword_empty_error(true);
+                  setEmail_error(false);
+                  setEmail_empty_error(true);
+            }
+     }}
+     >
            Log in
            </button>
            </div>
