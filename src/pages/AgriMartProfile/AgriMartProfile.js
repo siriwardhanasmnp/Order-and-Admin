@@ -6,43 +6,22 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import {
-  Button,
-  Form,
-  Row,
-  Col,
-  Input,
-  message,
-  InputNumber,
-  Select,
-  Modal,
-  Space,
-  notification,
-} from "antd";
+import {Button,Form,Row,Col,Input,message,InputNumber,Select, Modal,Space,notification,} from "antd";
 import {Table} from "react-bootstrap";
 import FormItem from "antd/lib/form/FormItem";
 import TextArea from "antd/lib/input/TextArea";
-import { Tabs } from 'antd';
-import { Card } from 'antd';
+import { Tabs,Card } from 'antd';
+import { axiosInstance } from '../../services';
 const { TabPane } = Tabs;
-
 
 function AgriMartProfile(props) {
 
-    useEffect(() => {
-        setProductId(props.id);
-        console.log("Id-------", productId);
-        // Update the document title using the browser API
-        getOneProduct();
-      }, []);
-
-  // const [productTitle, setProductTitle] = useState("");
-  // const [category, setcategory] = useState("");
-  // const [description, setdescription] = useState("");
-  // const [quantity, setquantity] = useState("");
-  // const [price, setprice] = useState("");
-  // const [message, setMessage] = useState("");
-
+    // useEffect(() => {
+    //     setProductId(props.id);
+    //     console.log("Id-------", productId);
+    //     // Update the document title using the browser API
+    //     getOneProduct();
+    //   }, []);
 
 //---------Card
 const { Meta } = Card;
@@ -72,7 +51,17 @@ const success = () => {
   }, 3600);
 };
 
-
+const [posts, setPosts] = useState([]);
+useEffect(() => {
+  axiosInstance.get('/products')
+  .then((res) => {
+    console.log(res.data);
+    setPosts(res.data);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+});
 
 
    const [productId, setProductId] = useState();
@@ -83,31 +72,31 @@ const success = () => {
   const { state } = useLocation();
 
 
-  useEffect(() => {
-    if(state){
-      form.setFieldsValue(state);
-    }
-  }, [state]);
+  // useEffect(() => {
+  //   if(state){
+  //     form.setFieldsValue(state);
+  //   }
+  // }, [state]);
   
-  let getOneProduct = (productId) => {
-    axios({
-      method: "get",
-      url: `http://localhost:8080/products/${productId}`,
+  // let getOneProduct = (productId) => {
+  //   axios({
+  //     method: "get",
+  //     url: `http://localhost:8080/products/${productId}`,
 
-    })
-      .then((res) => {
-          console.log('Edit result',res);
-          console.log('data----',res.data);
-        notification.success({
-          message: "Product Updated Successfully",
-        });
-        form.resetFields()
-        setIsLoading(false);
-      })
+  //   })
+  //     .then((res) => {
+  //         console.log('Edit result',res);
+  //         console.log('data----',res.data);
+  //       notification.success({
+  //         message: "Product Updated Successfully",
+  //       });
+  //       form.resetFields()
+  //       setIsLoading(false);
+  //     })
 
-      .catch((error) => {
-      });
-  };
+  //     .catch((error) => {
+  //     });
+  // };
 
   const { id } = useParams();
   const navigate  = useNavigate();

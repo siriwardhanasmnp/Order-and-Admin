@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./AgriMartCheckout.css";
 import {Table} from "react-bootstrap";
-import AgriMartNavBar from "../../components/AgriMartNavBar/AgriMartNavBar";
+import AgriMartCheckNavBar from "../../components/AgriMartCheckNavBar/AgriMartCheckNavBar";
 import { Button, Col, Form, Input,Modal, InputNumber, Row, message, Select, Space, Card, notification, Radio, Tabs, Alert, Spin} from "antd";
 import FormItem from "antd/lib/form/FormItem";
 import TextArea from "antd/lib/input/TextArea";
@@ -76,6 +76,37 @@ const success = () => {
   const [city, setcity] = useState("");
   const [province, setprovince] = useState("");
   const [zipcode, setzipcode] = useState("");
+
+
+  // function handleClick(e) {
+  //   console.log('param',e);
+  //   setIsLoading(true);
+    
+  //   axiosInstance.post("/postorder", e)
+  //     .then((res) => {
+  //       // alert('Product added successfully');
+  //       notification.success({
+  //         message: "Details Added Succesfully",
+  //         style: {
+  //           marginTop: '20vh',
+  //         },
+  //       });
+  //       form.resetFields();
+  //       setIsLoading(false);
+  //     })
+
+  //     .catch((error) => {
+  //       // console.error();
+  //       notification.error({
+  //         message: "Something Went Wrong",
+  //         style: {
+  //           marginTop: '20vh',
+  //         },
+  //       });
+  //       setIsLoading(false);
+  //     });
+  //   }
+
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -152,28 +183,29 @@ const success = () => {
 
 
 //Get Shipping details according to Current User
-const [cartDetails, setCartDetails] = useState([]);
-  useEffect(()=>{
-    axiosInstance.post("/getList")
-    // axios.get("http://localhost:8080/receiveToCart")
-    .then(res => {
-      console.log(res.data);
-      setCartDetails(res.data)
-  })
-  .catch(err=>{
-    console.error(err)
-  })
-  },[])
-  console.log("re-rendered");
+// const [cartDetails, setCartDetails] = useState([]);
+//   useEffect(()=>{
+//     axiosInstance.post("/getList")
+//     // axios.get("http://localhost:8080/receiveToCart")
+//     .then(res => {
+//       console.log(res.data);
+//       setCartDetails(res.data)
+//   })npm start
+
+//   .catch(err=>{
+//     console.error(err)
+//   })
+//   },[])
+//   console.log("re-rendered");
 
 
   return (
     <div className='check'>
-      <AgriMartNavBar />
+      <AgriMartCheckNavBar />
       <div className="content">
       <Row className='checkRow'>
         
-      <Col className='checkCol' span={12}><div>
+      <Col className='checkCol' span={10}><div>
 
       <Card>
                     <h4 class="txt-header">Add Shipping Details</h4>
@@ -529,7 +561,11 @@ const [cartDetails, setCartDetails] = useState([]);
                         </TabPane>  
                       </Tabs>
                         </Modal>
-                        <Button type="danger" block> 
+                      
+                        <Link to="/ToSuccess">
+                        <Button type="danger" block
+                        // onClick={handleClick}
+                        > 
                         {/* <Spin tip="Loading...">
                           <Alert
                             message="Alert message title"
@@ -538,8 +574,11 @@ const [cartDetails, setCartDetails] = useState([]);
                           />
                         </Spin> */}
                         Place Order</Button>
+                              </Link>
               </Card>
               </Row>
+              <Row>
+         
               <Card className='checkCard'>
               <table className="table table-bordered">
               <thead>
@@ -577,6 +616,8 @@ const [cartDetails, setCartDetails] = useState([]);
               </tbody>
               </table>
               </Card>
+              </Row>
+        
             </Col>
           </Row>
          

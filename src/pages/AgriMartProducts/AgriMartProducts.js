@@ -18,9 +18,10 @@ const Productpg = () => {
   };
 
   const [searchOption, setSearchOption] = useState();
+  const [filterOption, setfilterOption] = useState();
 
   useEffect(() => {
-    axiosInstance.get('/products')
+    axiosInstance.get('/getProducts', {params: searchOption})
     .then((res) => {
       console.log(res.data);
       setPosts(res.data);

@@ -5,18 +5,22 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import Productpg from "./pages/AgriMartProducts/AgriMartProducts";
 import Cart from "./pages/AgriMartCart/AgriMartCart";
 import Checkout from "./pages/AgriMartCheckout/AgriMartCheckout";
+import PaymentSuccess from "./pages/PaymentSuccess/PaymentSuccess";
 import { CartProvider } from "react-use-cart";
 import AgriMartPayment from "./pages/AgriMartPayment/AgriMartPayment";
 import AgriMartProfile from "./pages/AgriMartProfile/AgriMartProfile";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import { withCurrentUserContext } from "./context/UserContext";
+import { Button, Result } from 'antd';
+
 
 function App() {
   return (
     <>
       {/* <AgriMartPayment/> */}
       {/* <AgriMartFarmerProductManagement/> */}
+     
       <Router>
         <div className="App">
           <Routes>
@@ -57,6 +61,7 @@ function App() {
             <Route path="/ToPayment" element={<AgriMartPayment />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/ToSuccess" element={<PaymentSuccess />} />
           </Routes>
         </div>
       </Router>
